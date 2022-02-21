@@ -1,0 +1,189 @@
+
+{% extends 'TLindex.html' %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    #head {
+        color: #6c7293;
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 0%;
+        margin-top: auto;
+        padding: 0.2% 1% 1.5% 1%;
+        width: 79%;
+    }
+    .card{
+        margin-top:1%;
+        border-radius: 10px;
+    }
+    #qwe{
+        font-size:19px;
+        font-weight:500;
+    }
+    .card .card-body {
+        flex: 1 1 auto;
+        padding: 0.5rem 0.2rem;
+    }
+
+
+  *{
+    color:#6C7293;
+  }
+  * {
+    color: #6C7293;
+  }
+
+  .card {
+    margin-top: 1%;
+  }
+
+  #qwe {
+    font-size: 19px;
+    font-weight: 500;
+  }
+
+  .card .card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem 0.2rem;
+  }
+
+
+  * {
+    color: #6C7293;
+  }
+
+  .table1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+  }
+
+  th,
+  td {
+    text-align: center;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #191c24;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 900px;
+  }
+</style>
+
+
+ <body>
+    <div><label id="head">REPORTED ISSUES</label></div>
+
+
+    <div class="row">
+      <div class="col-12 grid-margin table1">
+        <div class="card p-3" style="border-radius: 5px;">
+          <div class="card-body">
+        
+            <input type="text" class="form-control " onkeyup="myFunction()" id="search" name="search" autocomplete="off" placeholder="Search...">
+            <br>
+            <div class="table-responsive">
+              <table class="table" id="myTable">
+                <thead>
+                  <tr>
+                    <!-- <th>
+                                      <div class="form-check form-check-muted m-0">
+                                          <label class="form-check-label">
+                                              <input type="checkbox" class="form-check-input">
+                                          </label>
+                                      </div>
+                                  </th> -->
+                    <th> S.No </th>
+                    <th> Name </th>
+                    <th> Designation</th>
+                    <th> Date </th>
+                    <th> Action</th>
+    
+    
+                  </tr>
+                </thead>
+                <tbody>
+    
+                  <tr>
+                    
+                      <td>1</td>
+                      <td> Tname </td>
+                      <td> Developer </td>
+                      <td> 10/5/2022</td>
+                     
+                      <td><a href="TLreportedissue2">
+                        <div class="badge badge-outline-success">Submitted</div></a>
+                      </td>
+                    
+                  </tr>
+    
+                  <tr>
+                    <td> 2 </td>
+                    <td> Tname1 </td>
+                    <td> Tester </td>
+                    <td> 10/5/2022</td>
+                   
+                    <td><a href="TLreportedissue2">
+                      <div class="badge badge-outline-success">Submitted</div></a>
+                    </td>
+                  <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script>
+      function myFunction() {
+       var input, filter, table, tr, td, i, txtValue;
+       input = document.getElementById("search");
+       filter = input.value.toUpperCase();
+       table = document.getElementById("myTable");
+       tr = table.getElementsByTagName("tr");
+       for (i = 0; i < tr.length; i++) {
+         td = tr[i].getElementsByTagName("td")[1];
+         if (td) {
+           txtValue = td.textContent || td.innerText;
+           if (txtValue.toUpperCase().indexOf(filter) > -1) {
+             tr[i].style.display = "";
+           } else {
+             tr[i].style.display = "none";
+           }
+         }
+       }
+     }
+     </script>
+
+
+    
+ 
+</body>
+
+{% endblock  %}
+

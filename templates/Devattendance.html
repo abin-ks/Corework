@@ -1,0 +1,197 @@
+{% extends 'devindex.html' %}
+{% load static %}
+
+
+{% block content %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+  .card {
+    height: auto;
+    float: right;
+    width: 90%;
+    margin-top: 3%;
+    margin-right: 5%;
+    border-radius: 0.25rem;
+  }
+
+  label {
+    margin-left: 35px;
+    padding-top: 14px;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 30px;
+    width: 30%;
+  }
+
+  .Search {
+    margin-top: 4%;
+    float: right;
+    margin-right: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 2;
+  
+  }
+
+  #head {
+    color: #6c7293;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 0%;
+    margin-top: auto;
+    padding: 0.2% 1% 1.5% 1%;
+    width: 79%;
+  }
+
+  .date {
+    width: 60%;
+    padding: 0.5%;
+    color: #667293;
+    background: #2A3038;
+  }
+
+
+  @media (max-width:767px) {
+    .card {
+      height: auto;
+      float: right;
+      width: 100%;
+      margin-top: 5%;
+      margin-right: 0%;
+      border-radius: 0.25rem;
+    }
+
+    label {
+      margin-left: 87px;
+      padding-top: 14px;
+      color: white;
+      font-weight: 400;
+      font-size: 18px;
+      margin-top: 30px;
+      width: 60%;
+      text-align: center;
+    }
+
+    .date {
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+
+  @media (max-width:591px) {
+    .card {
+      height: auto;
+      float: right;
+      width: 110%;
+      margin-top: 5%;
+      margin-right: -5%;
+      border-radius: 0.25rem;
+    }
+
+    label {
+      margin-left: 3px;
+      padding-top: 14px;
+      color: white;
+      font-weight: 400;
+      font-size: 16px;
+      margin-top: 30px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .date {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    .Search {
+      margin-top: 4%;
+      float: right;
+      margin-right: 38%;
+      padding-left: 3%;
+      padding-right: 3%;
+      line-height: 2;
+    }
+  }
+
+</style>
+
+<body>
+
+
+
+  <div><label id="head">ATTENDANCE</label></div>
+  <div class="container">
+
+<form method="POST" action="Devattend">
+  {% csrf_token %}
+    <div class="card">
+      <div class="card-body">
+        <div class="">
+          <label>SELECT FROM DATE</label>
+          <input type="date" id="txtFrom" name="fromdate" class="date" style="border: none;">
+        </div>
+        <div class="">
+          <label>SELECT TO DATE</label>
+          <input type="date" id="txtTo" name="todate" class="date " style="border: none;">
+        </div>
+        <button type="submit" class="btn btn-primary Search"  onclick="submitForm(evnt)">Search</button>
+       
+       
+      </div>
+    </div>
+  </div>
+
+</form>
+<div class="card" id="hai">
+  <div class="card-body">
+<table class="table table-bordered table-responsive"  >
+  <thead>
+    <tr>
+      <th>DATE</th>
+      <th>STATUS</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for i in mem1 %}
+    <tr>
+    <td>{{i.date}}</td>
+    <td>{{i.status}}</td>
+    
+  </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div></div>
+
+<!-- <script>  
+   
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>   -->
+
+
+</body>
+{% endblock %}

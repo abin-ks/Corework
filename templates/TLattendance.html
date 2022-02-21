@@ -1,0 +1,185 @@
+{% extends 'TLindex.html' %}
+{% load static %}
+
+
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+  .card {
+    height: auto;
+    float: right;
+    width: 90%;
+    margin-top: 3%;
+    margin-right: 5%;
+    border-radius: 0.25rem;
+  }
+
+  label {
+    margin-left: 35px;
+    padding-top: 14px;
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 30px;
+    width: 30%;
+  }
+
+  .Search {
+    margin-top: 4%;
+    float: right;
+    margin-right: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 2;
+  
+  }
+
+  #head {
+    color: #6c7293;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 0%;
+    margin-top: auto;
+    padding: 0.2% 1% 1.5% 1%;
+    width: 79%;
+  }
+
+  .date {
+    width: 60%;
+    padding: 0.5%;
+    color: #667293;
+    background: #2A3038;
+  }
+
+  #tble {
+    margin-bottom: -14px;
+    color: #6c7293;
+    width: 65%;
+    margin-top: 84px;
+    margin-left: 16%;
+    display: none;
+  }
+
+  @media (max-width:767px) {
+    .card {
+      height: auto;
+      float: right;
+      width: 100%;
+      margin-top: 5%;
+      margin-right: 0%;
+      border-radius: 0.25rem;
+    }
+
+    label {
+      margin-left: 87px;
+      padding-top: 14px;
+      color: white;
+      font-weight: 400;
+      font-size: 18px;
+      margin-top: 30px;
+      width: 60%;
+      text-align: center;
+    }
+
+    .date {
+      width: 80%;
+      margin-left: 10%;
+    }
+  }
+
+  @media (max-width:591px) {
+    .card {
+      height: auto;
+      float: right;
+      width: 110%;
+      margin-top: 5%;
+      margin-right: -5%;
+      border-radius: 0.25rem;
+    }
+
+    label {
+      margin-left: 3px;
+      padding-top: 14px;
+      color: white;
+      font-weight: 400;
+      font-size: 16px;
+      margin-top: 30px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .date {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    .Search {
+      margin-top: 4%;
+      float: right;
+      margin-right: 38%;
+      padding-left: 3%;
+      padding-right: 3%;
+      line-height: 2;
+    }
+  }
+
+</style>
+
+<body>
+
+
+
+  <div><label id="head">ATTENDANCE</label></div>
+  <div class="container">
+
+
+    <div class="card">
+      <div class="card-body">
+        <div class="">
+          <label>SELECT FROM DATE</label>
+          <input type="date" id="txtFrom" class="date" style="border: none;">
+        </div>
+        <div class="">
+          <label>SELECT TO DATE</label>
+          <input type="date" id="txtTo" class="date " style="border: none;">
+        </div>
+        <button id="btnSearch" type="button" class="btn btn-primary Search">Search</button>
+
+        <table class="table table-bordered table-responsive" id="tble">
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>STATUS</th>
+              <th>LOGIN TIME</th>
+              <th>LOGOUT TIME</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    const targetDiv = document.getElementById("tble");
+    const btn = document.getElementById("btnSearch");
+    btn.onclick = function () {
+      if (targetDiv.style.display = "block") {
+        targetDiv.style.display = "block";
+      } else {
+        targetDiv.style.display !== "none";
+      }
+    };
+  </script>
+
+
+</body>
+{% endblock %}

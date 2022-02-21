@@ -1,0 +1,71 @@
+{% extends 'testerindex.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row pt-2" style="background-color: black;">
+  <div class="mt-1 ml-5 " style="font-size: 20px;font-weight: 600;margin-left:40px; color: #6c7293;">ASSIGNED TASK</div>
+</div>
+
+<div class="row mt-3 ">
+  <div class="col-md-2"></div>
+  <div class="col-md-8 w-100">
+    <div class="card" style="color: white">
+      <div class="card-body">
+
+        <div class="row pt-1">
+          <div class="col-md-4">
+            <h4 class=" mr-2 ml-3 mt-2">NAME</h4>
+          </div>
+          <div class="col-md-4 ">
+            <h4 class=" mr-2 ml-6 mt-2">christin</h4>
+          </div>
+        </div>
+        <div class="row pt-1">
+          <div class="col-md-4">
+            <h4 class=" mr-2 ml-3 mt-2">PROJECT TITLE</h4>
+          </div>
+          <div class="col-md-8 ">
+            <h4 class=" mr-2 ml-6 mt-2">test</h4>
+          </div>
+        </div>
+        <div class="row pt-1">
+          <div class="col-md-4">
+            <h4 class=" mr-2 ml-3 mt-2">DATE</h4>
+          </div>
+          <div class="col-md-8 ">
+            <h4 class=" mr-2 ml-6 mt-2">feb 3, 2021</h4>
+          </div>
+        </div>
+        <div class="row pt-1">
+          <div class="col-md-4">
+            <h4 class=" mr-2 ml-3 mt-2">SUBMIT DATE</h4>
+          </div>
+          <div class="col-md-8 ">
+            <h4 class=" mr-2 ml-6 mt-2">feb 5, 2021</h4>
+          </div>
+        </div>
+
+        <div class="row pt-1">
+          <div class="col-md-4">
+            <h4 class=" mr-2 ml-3 mt-2">ATTACHED FILE</dh4>
+          </div>
+          <div class="col-md-8 ">
+            <img src="{% static 'workreport.png' %}" alt="" width="150" height="150">
+          </div>
+          <div class="row pt-1">
+            <div class="col-md-4">
+              <h4 class=" mr-2 ml-3 mt-2">DESCRIPTION</h4>
+            </div>
+            <div class="col-md-8 ">
+              <h4 class=" mr-2 ml-6 mt-2">responsive the base page</h4>
+            </div>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+{% endblock %}

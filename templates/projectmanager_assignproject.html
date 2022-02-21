@@ -1,0 +1,48 @@
+{% extends 'promanagerindex.html' %} {% load static %} {% block content %}
+<html>
+
+<title>Create Project</title>
+
+<form class="card col-12" method="POST" action="#">
+
+  <div class="form-group">
+    {% csrf_token %}
+    <div class="card-body col-12">
+      <h2>Assign Project</h2>
+      <br>
+      <label>Select Team Leader</label>
+      <select class="form-control" name="pname" id="" style='color:white !important'>
+        <option value=""></option>
+        <option value="">test</option>
+        
+         </select> <br>
+      <label>Employee ID</label>
+      <input type="text" class="form-control card-title col-12 md-4">
+      <label>Project</label>
+      <select class="form-control" name="" id="" style='color:white !important'>
+        <option value=""></option>
+        <option value="">test2</option>
+      </select>  <br>
+      <label>Description</label>
+      <textarea type="text" name="desc" class="form-control card-title col-12 md-4" style='color:white !important;height: 100px;'></textarea>
+      <label>Start date</label>
+      <input type="date" class="form-control card-title col-12 md-4" style='color:white !important'>
+      <label>End date</label>
+      <input type="date" class="form-control card-title col-12 md-4" style='color:white !important'>
+      <label>File Upload</label>
+      <input type="file" name="num" class="form-control card-title col-12" style='color:white !important'>
+      <div class="vertical-center">
+        <button type="button" style="float: right;" class="btn btn-outline-primary btn-icon-text">
+          <i class="mdi mdi-file-check btn-icon-prepend"></i> Assign </button>
+      </div>
+    </div>
+    </tr>
+  </div>
+  </div>
+
+
+</form>
+
+{% endblock %}
+
+</html>
