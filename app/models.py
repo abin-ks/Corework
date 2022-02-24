@@ -83,7 +83,8 @@ class user_registration(models.Model):
     startdate =  models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     enddate =  models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     status =  models.CharField(max_length=240, null=True,default='')
-
+    projectmanager_id = models.IntegerField(null=True, blank=True)
+    TL_id = models.IntegerField(null=True, blank=True)
     
     def __str__(self):
         return self.fullname
@@ -172,7 +173,7 @@ class project_taskassign(models.Model):
     enddate = models.DateField(auto_now_add=False, auto_now=False,  null=True, blank=True)
     files=models.FileField(upload_to = 'images/', default='')
     tester = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='project_taskassign_tester',null=True,blank=True)
-    extension = models.IntegerField()
+    extension = models.IntegerField(default='0')
     reason = models.TextField(null=True, blank=True)
     extension_status = models.CharField(max_length=200, null=True, blank=True)
     tl_description = models.CharField(max_length=200, null=True, blank=True)
@@ -220,7 +221,8 @@ class attendance(models.Model):
     user = models.ForeignKey(user_registration, on_delete=models.DO_NOTHING, related_name='attendanceuser',null=True,blank=True)
     date= models.DateTimeField(null=True,blank=True)
     status = models.CharField(max_length=200)
-
+    login_time = models.TimeField(auto_now=False, auto_now_add=False)
+    logout_time = models.TimeField(auto_now=False, auto_now_add=False)
 
     def __str__(self):
         return self.user

@@ -29,6 +29,7 @@ urlpatterns = [
     re_path(r'^DEVprojects$', views.DEVprojects, name='DEVprojects'),
     re_path(r'^DEVsuccess$', views.DEVsuccess, name='DEVsuccess'),
     re_path(r'^DEVtable$', views.DEVtable, name='DEVtable'),
+    re_path(r'^DEVtablesave$', views.DEVtablesave, name='DEVtablesave'),
     re_path(r'^DEVtask$', views.DEVtask, name='DEVtask'),
     re_path(r'^DEVtaskform$', views.DEVtaskform, name='DEVtaskform'),
     re_path(r'^DEVtaskmain$', views.DEVtaskmain, name='DEVtaskmain'),
@@ -78,6 +79,7 @@ urlpatterns = [
 
     #nirmal
     re_path(r'^projectmanager_assignproject', views.projectmanager_assignproject, name="projectmanager_assignproject"),
+    # re_path(r'^projectmanager_assignprojectsuccess', views.projectmanager_assignprojectsuccess, name="projectmanager_assignprojectsuccess"),
 
     #jensin
     re_path(r'^projectmanager_createproject', views.projectmanager_createproject, name="projectmanager_createproject"),
@@ -105,6 +107,7 @@ urlpatterns = [
     re_path(r'^projectman_team_attendance$', views.projectman_team_attendance, name='projectman_team_attendance'),
 
     re_path(r'^projectMANattendance$', views.projectMANattendance, name='projectMANattendance'),
+    re_path(r'^pmattend$', views.pmattend, name='pmattend'),
     re_path(r'^projectMANreportedissues$', views.projectMANreportedissues, name='projectMANreportedissues'),
     re_path(r'^projectMANreportedissue$', views.projectMANreportedissue, name='projectMANreportedissue'),
     re_path(r'^projectMANreportissue$', views.projectMANreportissue, name='projectMANreportissue'),
@@ -123,8 +126,8 @@ urlpatterns = [
     re_path(r'^projectmanager_currentdetail$', views.projectmanager_currentdetail, name='projectmanager_currentdetail'), 
     re_path(r'^projectmanager_currentteam$', views.projectmanager_currentteam, name='projectmanager_currentteam'),
     re_path(r'^projectmanager_completeproject$', views.projectmanager_completeproject, name='projectmanager_completeproject'),
-    re_path(r'^projectmanager_completedetail$', views.projectmanager_completedetail, name='projectmanager_completedetail'), 
-    re_path(r'^projectmanager_completeteam$', views.projectmanager_completeteam, name='projectmanager_completeteam'),
+    re_path(r'^projectmanager_completedetail/(?P<id>\d+)/$', views.projectmanager_completedetail, name='projectmanager_completedetail'), 
+    re_path(r'^projectmanager_completeteam/(?P<id>\d+)/$', views.projectmanager_completeteam, name='projectmanager_completeteam'),
     re_path(r'^projectmanager_teaminvolved$', views.projectmanager_teaminvolved, name='projectmanager_teaminvolved'),
     re_path(r'^projectmanager_devteam$', views.projectmanager_devteam, name='projectmanager_devteam'),
 

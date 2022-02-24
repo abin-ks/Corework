@@ -25,10 +25,11 @@
                     </thead>
                     <tbody>
                       {% for i in devp %}
+                      {% for j in dev %}
                       
                       <tr>
                         <td style="color:white;">{{i.description}}<br><br></td>
-                        <td style="color:white;">{{i.project_id}}</td>
+                        <td style="color:white;">{{j.fullname}}</td>
                        <td class="text-primary"><a href="" data-toggle="modal" data-target="#taskstatus" style="text-decoration: none;"><div class="badge badge-outline-info">Task Status</div></a></td>
                       <td class="text-primary"><a href="#" data-toggle="modal" data-target="#testerstatus" style="text-decoration: none;"><div class="badge badge-outline-info">Tester Status</div></a></td>
                        <td class="text-primary"><a href="#" data-toggle="modal" data-target="#exampleModalCenter2" style="text-decoration: none;"><div class="badge badge-outline-info">Extension Status</div></a></td>
@@ -38,8 +39,9 @@
                         </div>
                        </td>
                       </tr>
-                    
                       {% endfor %}
+                      {% endfor %}
+                     
                       <tr>
                         <td style="color:white;">{{i.description}}</td>
                         <td style="color:white;">{{i.id}}</td>
@@ -63,6 +65,7 @@
 <!-- pop up window for Project details -->
 
 <div class="rowmt-5 modal" id="exampleModalCenter3">
+  
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
     <div class="modal-content modal-xl" style="background-color: #191c24;">
   <div class="card ">
@@ -273,6 +276,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="DEVtablesave" method == "POST":
+              {% csrf_token %}
       <div class="table-responsive mt-3 mb-3 container">
         <table class="table  table-bordered ">
             <thead  style="background-color: black;">
@@ -286,19 +291,22 @@
               </tr>
             </thead>
             <tbody>
+              
               <tr>
-                <td style="color:white;">jan 21, 2022 </td>
+                <td style="color:white;">{{i.startdate}} </td>
                 
-               <td style="color:white;">update base page
-                 Deadline jan 31, 2022
+               <td style="color:white;">
+                {{i.description}}
                </td>
-              <td style="color:white;">Registration
-                Deadline jan 31, 2022
+              <td style="color:white;">
+                {{i.tl_description}}
               </td>
-              <td style="color:white;">1.work started</td>
+              <td style="color:white;">{{i.employee_description}}</td>
               <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-primary">Download</div></a></td>
 
               </tr>
+              {% endfor %}
+              </form
               <tr>
                 <td style="color:white;">jan 10, 2022</td>
               
@@ -328,12 +336,14 @@
                   Deadline jan 31, 2022</td>
                   <td style="color:white;"><textarea style="height: 90px;"></textarea></td>
                   <td class="text-info"><input type="file" style="max-width: 90px;"></td>
-                  <td class="text-info"><a href="" style="text-decoration:none;"><div class="badge badge-outline-primary">Save</div></a></td>
+                  <td class="text-info"><a href="DEVtablesave" style="text-decoration:none;"><div class="badge badge-outline-primary">Save</div></a></td>
               </tr>
+              
             </tbody>
           </table>
         </div>
-    
+        
+        
 </div>
 <script>
   function myFunction() {

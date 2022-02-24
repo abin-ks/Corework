@@ -1,5 +1,5 @@
 from asyncio import Task
-from tkinter import Variable
+from tkinter import E, Variable
 from django.http import request
 from django.shortcuts import render, redirect
 from datetime import datetime
@@ -15,19 +15,19 @@ def login(request):
 def home(request):
     if request.method == 'POST':
         if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
-            dev = user_registration.objects.get(
+            pm = user_registration.objects.get(
                 email=request.POST['email'], password=request.POST['password'])
-            request.session['devfn'] = dev.fullname
-            request.session['devid'] = dev.id
-            return render(request, 'DEVsec.html', {'dev': dev})
+            request.session['pmid'] = pm.id
+            return render(request, 'proman_sec.html', {'pm': pm})
         
-        # if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
-        #     member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
+        if user_registration.objects.filter(email=request.POST['email'], password=request.POST['password']).exists():
+            member=user_registration.objects.get(email=request.POST['email'], password=request.POST['password'])
            
-        #     request.session['pmid'] = member.id
             
             
-        #     return render(request, 'proman_sec.html', {'member':member})
+            request.session['devid'] = member.id
+            
+            return render(request, 'DEVsec.html', {'member':member})
         
         else:
             context = {'msg': 'Invalid uname or password'}
@@ -182,18 +182,32 @@ def Devapplyleav3(request):
 
 
 def DEVprojects(request):
+    if request.session.has_key('devid'):
+        devid = request.session['devid']
+    else:
+        Variable = "dummy"
+    dev = user_registration.objects.filter(id=devid)
+    devs = projects
     return render(request,'DEVprojects.html')
 
 def DEVtable(request):
     if request.session.has_key('devid'):
         devid = request.session['devid']
+    if request.session.has_key('devfn'):
+        devfn = request.session['devfn']
     else:
         Variable = "dummy"
     projectid = request.GET.get('projectid')
-    dev = user_registration.objects.filter(id=devid)
+    dev = user_registration.objects.filter(id=devid,fullname=devfn)
     time = datetime.now()
-    devp = project_taskassign.objects.filter(project_id=projectid).filter(user_id=devid)
+    devp = project_taskassign.objects.filter()
     return render(request, 'DEVtable.html',{'dev':dev,'devp':devp, 'time':time})
+
+def DEVtablesave(request):
+    if request.session.has_key('devid'):
+        devid = request.session['devid']
+    
+    return render(request, 'DEVtable.html')
     
 
 def DEVtaskmain(request):
@@ -300,8 +314,8 @@ def tldashboard(request):
         usernameM2 = request.session['usernametl2']
     else:
         usernameM2 = "dummy"
-    mem = employees.objects.filter(designation=usernameM1).filter(fullname=usernameM2)
-    return render(request, 'TLdashboard.html')
+    mem = user_registration.objects.filter(fullname=usernameM2)
+    return render(request, 'TLdashboard.html' , {'mem':mem})
 def tlprojects(request):
     return render(request, 'TLprojects.html')
 def tlprojecttasks(request):
@@ -354,11 +368,11 @@ def promanagerindex(request):
     return render(request, 'promanagerindex.html')
 
 def pmanager_dash(request):
-    if request.session.has_key('pmfn'):
-        pmfn = request.session['pmfn']
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
     else:
         variable = "dummy"
-    member = user_registration.objects.filter(fullname=pmfn)
+    member = user_registration.objects.filter(id=pmid)
     return render(request, 'pmanager_dash.html', {'member': member})
 
     
@@ -368,11 +382,51 @@ def projectmanager_projects(request):
 
 # nirmal
 def projectmanager_assignproject(request):
-    return render(request, 'projectmanager_assignproject.html')
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+    mem = user_registration.objects.filter(id=pmid)
+    var = project.objects.filter(user_id=pmid)
+    d = designation.objects.get(designation="TL")
+    d1 = d.id
+    spa = user_registration.objects.filter(projectmanager_id=pmid).filter(designation_id=d1)
+    
+    if request.session.has_key('pmid'):
+            pmid = request.session['pmid']
+    if request.method =='POST':
+        
+        var = project_taskassign()
+        # print("hii")
+        var.user_id = pmid
+        var.tl_id = request.POST['pname']
+        var.description=request.POST.get('desc')
+        var.startdate=request.POST.get('sdate')
+        var.enddate=request.POST.get('edate')
+        var.files=request.POST.get('num')
+        var.project_id = request.POST.get('yyy')
+        print(var.project_id)
+        # print(var.tl_id)
+        var.save()
+        return render(request, 'projectmanager_assignproject.html')
+    
+
+    return render(request, 'projectmanager_assignproject.html', {'var':var,'mem':mem,'spa':spa})
 
 # jensin
 def projectmanager_createproject(request):
-    return render(request, 'projectmanager_createproject.html')
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+        mem = user_registration.objects.filter(id=pmid)
+        
+    if request.method =='POST':
+        var = project()
+        var.project=request.POST.get('pname')
+        var.startdate=request.POST.get('sdate')
+        var.enddate=request.POST.get('edate')
+        var.description=request.POST.get('desc')
+        var.files=request.POST.get('num')
+        
+        var.save()
+    return render(request, 'projectmanager_createproject.html',{'mem':mem})
 
 # maneesh
 def projectmanager_description(request):
@@ -420,7 +474,33 @@ def projectman_team_attendance(request):
     return render(request,'projectman_team_attendance.html')
 
 def projectMANattendance(request):
-    return render(request, 'projectMANattendance.html')
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+ 
+    mem = user_registration.objects.filter(id=pmid)
+    
+    return render(request, 'projectMANattendance.html',{'mem':mem})
+
+def pmattend(request):
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+ 
+    mem = user_registration.objects.filter(id=pmid)
+    if request.method == "POST":
+        
+        pm = request.session['pmid']
+       
+        fromdate = request.POST.get('fromdate')
+        todate = request.POST.get('todate')
+        
+        # user = attendance.objects.filter(user_id=pmid)
+        mem1 = attendance.objects.filter(date__range=[fromdate, todate])
+        
+      
+    return render(request, 'projectMANattendance.html',{'mem1':mem1,'mem':mem})
+
+
+
 
 def projectMANreportedissues(request):
     return render(request, 'projectMANreportedissues.html')
@@ -469,13 +549,33 @@ def projectmanager_currentteam(request):
     return render(request, 'projectmanager_currentteam.html')
 
 def projectmanager_completeproject(request):
-    return render(request, 'projectmanager_completeproject.html')
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+        asus = project.objects.all()
+        
+        
+    return render(request, 'projectmanager_completeproject.html',{'asus':asus})
 
-def projectmanager_completedetail(request):
-    return render(request, 'projectmanager_completedetail.html')
+def projectmanager_completedetail(request,id):
+    if request.session.has_key('pmid'):
+        pmid = request.session['pmid']
+    pro = user_registration.objects.filter(id=pmid)
+    lost = project.objects.filter(id=id)
+        
+        
+    return render(request, 'projectmanager_completedetail.html',{'lost':lost,'pro':pro})
 
-def projectmanager_completeteam(request):
-    return render(request, 'projectmanager_completeteam.html')
+def projectmanager_completeteam(request,id):
+    if 'pmid' in request.session:
+        if request.session.has_key('pmid'):
+            pmid = request.session['pmid']
+        else:
+            pmid ="dummy"
+        xmo = user_registration.objects.filter(id=pmid)
+        p1 = designation.objects.get(designation="Developer")
+        
+        mem =user_registration.objects.filter(designation_id=p1).filter(TL_id=id)
+    return render(request, 'projectmanager_completeteam.html',{'xmo':xmo,'mem':mem})
 
 def projectmanager_teaminvolved(request):
     return render(request, 'projectmanager_teaminvolved.html')
@@ -484,10 +584,20 @@ def projectmanager_devteam(request):
     return render(request, 'projectmanager_devteam.html')
 
 def projectmanager_currenttl(request):
-    return render(request, 'projectmanager_currenttl.html')
+   return render(request, 'projectmanager_currenttl.html')
 
 def projectmanager_completetl(request):
-    return render(request, 'projectmanager_completetl.html')
+    if 'pmid' in request.session:
+        if request.session.has_key('pmid'):
+            pmid = request.session['pmid']
+        else:
+            pmid ="dummy"
+        man = user_registration.objects.filter(id=pmid)
+        p1 = designation.objects.get(designation="TL")
+        
+        mem =user_registration.objects.filter(designation_id=p1)
+    return render(request, 'projectmanager_completetl.html',{'man':man,'mem':mem})
+    
 
 def projectmanager_tlreported(request):
     return render(request, 'projectmanager_tlreported.html')

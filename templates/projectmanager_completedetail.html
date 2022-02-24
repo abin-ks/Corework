@@ -13,24 +13,28 @@
 </style>
 
 
-
+{% for i in lost %}
 <div class="container d-flex justify-content-center" >  
+  
     <div class="col-12 grid-margin">
+      
         <div class="card">
           <div class="card-body">
             <h3 class="card-title text-muted">Project Details</h3>
+           
             <div class="row">
-                
+              
                     <div class="col-md-5 grid-margin stretch-card">
+                      
                         <div class="card">
                           <div class="card-body">
                             <center>
-                            <img class="img-sm rounded-circle " src=" /static/assets/images/faces/face15.jpg" alt="">
+                            <img class="img-sm rounded-circle " src="{{i.files.url}}" alt="">
                             </center>
                             <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
                               <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
                                 <center>
-                                <h4 class="mb-0">Infox Core Project</h4>
+                                <h4 class="mb-0">{{i.project}}</h4>
                                 </center>
                               </div>
                               
@@ -43,7 +47,7 @@
                                 
                               </div>
                               <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                                <h6 class="font-weight-bold mb-0">25 Jan 2022</h6>
+                                <h6 class="font-weight-bold mb-0">{{i.startdate}}</h6>
                               </div>
                             
                             </div>
@@ -54,7 +58,7 @@
                                   
                                 </div>
                                 <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                                  <h6 class="font-weight-bold mb-0">10 Feb 2022</h6>
+                                  <h6 class="font-weight-bold mb-0">{{i.enddate}}</h6>
                                 </div>
                               
                               </div>
@@ -76,17 +80,22 @@
                               </div>
                               
                             </div>
-                            <p style="text-align:justify">Corona-free is a responsive HTML template that is based on the CSS framework Bootstrap 5 and it is built with Sass. Sass compiler makes it easier to code and customize. If you are unfamiliar with Bootstrap or Sass, visit their website and read through the documentation. All of Bootstrap components have been modified to fit the style of Corona-free and provide a consistent look throughout the template.</p>
+                            <p style="text-align:justify">{{i.description}}</p>
                           </div>
+                         
                         </div>
+                        
                     </div>
+                    
         </div>
         
           </div>
         </div>
+        
       </div>
-    </div>
     
+    </div>
+    {% endfor %}
        <center>
         <div class="row " style="margin-top: 20px;">
           <div class="col-sm-6 grid-margin">

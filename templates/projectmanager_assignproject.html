@@ -3,36 +3,46 @@
 
 <title>Create Project</title>
 
-<form class="card col-12" method="POST" action="#">
-
+<form class="card col-12" action=""  method="post" enctype="multipart/form-data">
+  {% csrf_token %}
   <div class="form-group">
-    {% csrf_token %}
+   
     <div class="card-body col-12">
       <h2>Assign Project</h2>
       <br>
       <label>Select Team Leader</label>
+      
       <select class="form-control" name="pname" id="" style='color:white !important'>
-        <option value=""></option>
-        <option value="">test</option>
-        
+        <option>
+          --select--
+        </option>
+        {% for i in spa %}
+        <option value="{{i.id}}">{{i.fullname}}</option>
+       
+        {% endfor %}
          </select> <br>
-      <label>Employee ID</label>
-      <input type="text" class="form-control card-title col-12 md-4">
+         
+     
       <label>Project</label>
-      <select class="form-control" name="" id="" style='color:white !important'>
-        <option value=""></option>
-        <option value="">test2</option>
+      <select class="form-control" name="yyy" id="" style='color:white !important'>
+        <option>
+          --select--
+        </option>
+        {% for j in var %}
+        <option value="{{j.id}}">{{j.project}}</option>
+       print({{j.id}})
+        {% endfor %}
       </select>  <br>
       <label>Description</label>
       <textarea type="text" name="desc" class="form-control card-title col-12 md-4" style='color:white !important;height: 100px;'></textarea>
       <label>Start date</label>
-      <input type="date" class="form-control card-title col-12 md-4" style='color:white !important'>
+      <input type="date" name="sdate" class="form-control card-title col-12 md-4" style='color:white !important'>
       <label>End date</label>
-      <input type="date" class="form-control card-title col-12 md-4" style='color:white !important'>
+      <input type="date" name="edate" class="form-control card-title col-12 md-4" style='color:white !important'>
       <label>File Upload</label>
       <input type="file" name="num" class="form-control card-title col-12" style='color:white !important'>
       <div class="vertical-center">
-        <button type="button" style="float: right;" class="btn btn-outline-primary btn-icon-text">
+        <button type="submit" style="float: right;" class="btn btn-outline-primary btn-icon-text">
           <i class="mdi mdi-file-check btn-icon-prepend"></i> Assign </button>
       </div>
     </div>

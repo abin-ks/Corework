@@ -37,46 +37,20 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for i in mem %}
                     <tr>
+                      
                       <td>
-                        1
+                        {{i.id}}
                       </td>
-                      <td><a  style="text-decoration: none; color:#6c7293;"> Herman Beck </a></td>
-                      <td> 12345 </td>
-                      <td> herman@gmail.com </td>
-                      <td> 9072563276 </td>
+                      <td><a  style="text-decoration: none; color:#6c7293;"> {{i.fullname}}</a></td>
+                      <td> {{i.employee_id}} </td>
+                      <td> {{i.email}} </td>
+                      <td> {{i.mobile}} </td>
                       
                     </tr>
-                    <tr>
-                      <td>
-                       2
-                      </td>
-                      <td><a  style="text-decoration: none; color:#6c7293;"> Messsy Adam </a></td>
-                      <td> 12345 </td>
-                      <td> messyadam@gmail.com </td>
-                      <td> 9072563276 </td>
-                      
-                    </tr>
-                    <tr>
-                      <td>
-                       3
-                      </td>
-                      <td><a  style="text-decoration: none; color:#6c7293;"> John Richards </a></td>
-                      <td> 12345 </td>
-                      <td> johnrichards@gmail.com </td>
-                      <td> 9072563276 </td>
-                      
-                    </tr>
-                    <tr>
-                      <td>
-                        4
-                      </td>
-                      <td><a  style="text-decoration: none; color:#6c7293;"> Peter Meggik </a></td>
-                      <td> 12345 </td>
-                      <td> petermeggik@gmail.com </td>
-                      <td> 9072563276 </td>
-                      
-                    </tr>
+                    {% endfor %}
+                   
                     
                   </tbody>
                 </table>
