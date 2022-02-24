@@ -102,12 +102,12 @@
                   <td>{{tas.enddate}}</td>
                   <td>{{tas.submissiondate}}</td>
                   {% if tas.status == 'pending' %}
-                    <td><a href="DEVtaskform?taskid={{tas.id}}">
+                    <td><a href="{% url 'DEVtaskform' tas.id %}">
                         <div class="badge badge-outline-primary">Pending</div>
                       </a>
                     </td>
                   {% else %}
-                    <td><a href="DEVtask?taskid={{tas.id}}">
+                    <td><a href="{% url 'DEVtask' tas.id %}">
                         <div class="badge badge-outline-success">submitted</div>
                       </a>
                     </td>

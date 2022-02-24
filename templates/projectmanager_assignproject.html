@@ -3,16 +3,16 @@
 
 <title>Create Project</title>
 
-<form class="card col-12" action=""  method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <div class="form-group">
-   
-    <div class="card-body col-12">
-      <h2>Assign Project</h2>
-      <br>
-      <label>Select Team Leader</label>
-      
-      <select class="form-control" name="pname" id="" style='color:white !important'>
+<form class="card col-12" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+
+        <div class="card-body col-12">
+            <h2>Assign Project</h2>
+            <br>
+            <label>Select Team Leader</label>
+
+            <select class="form-control" name="pname" id="" style='color:white !important'>
         <option>
           --select--
         </option>
@@ -21,10 +21,10 @@
        
         {% endfor %}
          </select> <br>
-         
-     
-      <label>Project</label>
-      <select class="form-control" name="yyy" id="" style='color:white !important'>
+
+
+            <label>Project</label>
+            <select class="form-control" name="yyy" id="" style='color:white !important'>
         <option>
           --select--
         </option>
@@ -32,23 +32,23 @@
         <option value="{{j.id}}">{{j.project}}</option>
        print({{j.id}})
         {% endfor %}
-      </select>  <br>
-      <label>Description</label>
-      <textarea type="text" name="desc" class="form-control card-title col-12 md-4" style='color:white !important;height: 100px;'></textarea>
-      <label>Start date</label>
-      <input type="date" name="sdate" class="form-control card-title col-12 md-4" style='color:white !important'>
-      <label>End date</label>
-      <input type="date" name="edate" class="form-control card-title col-12 md-4" style='color:white !important'>
-      <label>File Upload</label>
-      <input type="file" name="num" class="form-control card-title col-12" style='color:white !important'>
-      <div class="vertical-center">
-        <button type="submit" style="float: right;" class="btn btn-outline-primary btn-icon-text">
+      </select> <br>
+            <label>Description</label>
+            <textarea type="text" name="desc" class="form-control card-title col-12 md-4" style='color:white !important;height: 100px;'></textarea>
+            <label>Start date</label>
+            <input type="date" name="sdate" class="form-control card-title col-12 md-4" style='color:white !important'>
+            <label>End date</label>
+            <input type="date" name="edate" class="form-control card-title col-12 md-4" style='color:white !important'>
+            <label>File Upload</label>
+            <input type="file" name="num" class="form-control card-title col-12" style='color:white !important'>
+            <div class="vertical-center">
+                <button type="submit" style="float: right;" class="btn btn-outline-primary btn-icon-text">
           <i class="mdi mdi-file-check btn-icon-prepend"></i> Assign </button>
-      </div>
+            </div>
+        </div>
+        </tr>
     </div>
-    </tr>
-  </div>
-  </div>
+    </div>
 
 
 </form>
