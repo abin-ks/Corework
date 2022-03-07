@@ -225,9 +225,10 @@ def DEVtable(request):
         else:
             Variable = "dummy"
         projectid = request.GET.get('projectid')
+        
         dev = user_registration.objects.filter(id=devid,fullname=devfn)
         time = datetime.now()
-        devp = project_taskassign.objects.filter()
+        devp = project_taskassign.objects.all()
         return render(request, 'DEVtable.html',{'dev':dev,'devp':devp, 'time':time})
     else:
         return redirect('/')

@@ -79,7 +79,7 @@ urlpatterns = [
 
     #nirmal
     re_path(r'^projectmanager_assignproject', views.projectmanager_assignproject, name="projectmanager_assignproject"),
-    # re_path(r'^projectmanager_assignprojectsuccess', views.projectmanager_assignprojectsuccess, name="projectmanager_assignprojectsuccess"),
+    
 
     #jensin
     re_path(r'^projectmanager_createproject', views.projectmanager_createproject, name="projectmanager_createproject"),
